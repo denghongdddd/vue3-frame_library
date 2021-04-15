@@ -7,13 +7,6 @@ This project is still under heavy development. Feel free to join us and make you
 
 ---
 
-## Bootstrap project
-With command
-```bash
-$ yarn bootstrap
-```
-the project will install all dependencies and run `lerna bootstrap` to initialize the project
-
 ## Website preview
 With command
 ```bash
