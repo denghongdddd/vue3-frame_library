@@ -1,0 +1,33 @@
+[
+  {
+    "name": "开发指南",
+    "children": [
+      {
+        "path": "/installation",
+        "name": "安装"
+      },
+      {
+        "path":"/style",
+        "name":"基础样式"
+      }
+    ]
+  },
+  {
+    "name": "组件",
+    "groups": [
+      {
+        "groupName": "Notice",
+        "list": [
+          {
+            "path": "/mobile",
+            "title": "移动端组件"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "工具方法",
+    "path":"/date"
+  }
+]
