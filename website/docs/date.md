@@ -26,30 +26,38 @@
   ```html
     <template>
       <table class="default">
-        <tr> <td>立刻运行</td><td><button @click="add.now('----test------')">累计</button></td><td rowspan="4">{{num}}</td> </tr>
+        <tr> <td>立刻运行</td><td><button @click="add.now('----test------')">累计</button></td><td rowspan="5">{{num}}</td> </tr>
         <tr> <td>运行后延迟</td><td><button @click="add.before('----test------')">累计</button></td> </tr>
         <tr> <td>运行前延迟</td><td><button @click="add.after('----test------')">累计</button></td> </tr>
         <tr> <td>运行前延迟,延迟中有调用过,结束后回再次运行一次</td><td><button @click="add.proceed('----test------')">累计</button></td> </tr>
+        <tr> <td>监听延迟</td><td>{{listenerStatu}}</td> </tr>
       </table>
     </template>
     <script>
-    const { delayed } = require("black-knight/config/utils.js")
+    const { delay } = require("black-knight/config/utils.js")
       export default{
         data(){
           return{
             num:0,
-            add: new delayed(async (e)=>{
+            add: new delay(async (e)=>{
               console.log(e)
               this.num++
             },3000),
+            listenerStatu:"未开始",
           }
         },
         mounted(){
-          
+          this.add.addEventListener("begin",()=>{
+            this.listenerStatu="延迟中..."
+          })
+          this.add.addEventListener("end",()=>{
+            this.listenerStatu="延迟结束"
+          })
         },
         methods:{
 
         },
+        
       }
     </script>
   ```
