@@ -4,12 +4,12 @@
 |方法名	|说明	|参数	|
 |-------|-------|-------|
 |format	| 返回自定义格式日期 | fmt: 格式内容<br/>defaultValue: 无值时的默认值 |
-| year | 返回年 | number:修改年份,不传返回年份 |
-| month | 返回月 | number:修改月,不传返回月 |
-| date | 返回日期 | number:修改日期,不传返回日期 |
-| hour | 返回小时 | number:修改小时,不传返回小时 |
-| minute | 返回分 | number:修改分,不传返回分 |
-| seconds | 返回秒 | number:修改秒,不传返回秒 |
+| year | 返回年 | number:修改年份,不传参数返回年份 |
+| month | 返回月 | number:修改月,不传参数返回月 |
+| date | 返回日期 | number:修改日期,不传参数返回日期 |
+| hour | 返回小时 | number:修改小时,不传参数返回小时 |
+| minute | 返回分 | number:修改分,不传参数返回分 |
+| seconds | 返回秒 | number:修改秒,不传参数返回秒 |
 | set | 修改时间 | type: 类型`year|y`、`month|M`、`date|d`、`hour|h`、`minute|m`、`second|s`、`millisecond|S` <br/> num: 修改的值 |
 | starOfMonth | 设置时间为当月显示的第一个星期 | num: 开始星期 `默认:1` `范围：1~7` |
 | endOf | 设置为时间的结尾 | type: 类型 `year|y`、`month|M`、`date|d` |
