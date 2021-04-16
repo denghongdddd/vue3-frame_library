@@ -14,20 +14,18 @@
   },
   {
     "name": "组件",
-    "groups": [
-      {
-        "groupName": "Notice",
-        "list": [
-          {
-            "path": "/mobile",
-            "title": "移动端组件"
-          }
-        ]
-      }
-    ]
+    "children":[{
+      "path":"/mobile",
+      "title":"移动端组件"
+      }]
   },
   {
-    "name": "工具方法",
-    "path":"/date"
+    "name": "自定义工具",
+    "children":[
+      {
+        "title":"工具类",
+        "path":"/date"
+      }
+    ]
   }
 ]
