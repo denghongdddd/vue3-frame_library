@@ -3,8 +3,7 @@
     class="side-nav"
     :class="{ 'is-fade': isFade }"
     :style="navStyle"
-    @mouseenter="isFade = false"
-  >
+    @mouseenter="isFade = false" >
     <ul>
       <li v-for="(item, keyy) in data" :key="keyy" class="nav-item" >
         <a v-if="!item.path && !item.href" @click="expandMenu">{{ item.name }}</a>
@@ -32,22 +31,19 @@
           <div
             v-for="(group, key) in item.groups"
             :key="key"
-            class="nav-group"
-          >
+            class="nav-group" >
             <div class="nav-group__title" @click="expandMenu">{{ group.groupName }}</div>
             <ul class="pure-menu-list">
               <li
                 v-for="(navItem, keey) in group.list"
                 v-show="!navItem.disabled"
                 :key="keey"
-                class="nav-item"
-              >
+                class="nav-item" >
                 <router-link
                   active-class="active"
                   :to="base + navItem.path"
                   exact
-                  v-text="navItem.title"
-                />
+                  v-text="navItem.title" />
               </li>
             </ul>
           </div>
