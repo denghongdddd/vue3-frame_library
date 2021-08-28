@@ -4,7 +4,7 @@ const webpack = require('webpack')
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
-const glob = require('glob');
+const glob = require('glob')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const libMode = process.env.LIBMODE

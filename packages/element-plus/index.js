@@ -2,11 +2,13 @@ import ElButton from '@package/button'
 import ElLoading from '@package/loading'
 import ElScrollbar from '@package/scrollbar'
 import ElTooltip from '@package/tooltip'
+import ElPopper from '../popper'
 
 const components = [
   ElButton,
   ElScrollbar,
   ElTooltip,
+  ElPopper,
 ]
 
 const plugins = [

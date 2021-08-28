@@ -3,7 +3,7 @@
     class="demo-block"
     :class="[blockClass, { 'hover': hovering }]"
     @mouseenter="hovering = true"
-    @mouseleave="hovering = false" >
+    @mouseleave="hovering = false">
     <div class="source">
       <slot name="source"></slot>
     </div>
@@ -19,7 +19,7 @@
       ref="control"
       class="demo-block-control"
       :class="{ 'is-fixed': fixedControl }"
-      @click="isExpanded = !isExpanded" >
+      @click="isExpanded = !isExpanded">
       {{ controlText }}
       <!-- <transition name="arrow-slide">
         <i :class="[iconClass, { 'hovering': hovering }]"></i>
