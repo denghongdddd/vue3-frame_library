@@ -1,0 +1,31 @@
+[
+  {
+    "name": "开发指南",
+    "children": [
+      {
+        "path": "/installation",
+        "name": "安装"
+      },
+      {
+        "path":"/style",
+        "name":"基础样式"
+      }
+    ]
+  },
+  {
+    "name": "组件",
+    "children":[{
+      "path":"/mobile",
+      "title":"移动端组件"
+      }]
+  },
+  {
+    "name": "自定义工具",
+    "children":[
+      {
+        "title":"工具类",
+        "path":"/date"
+      }
+    ]
+  }
+]

@@ -13,8 +13,4 @@ coverage/
 website-dist
 packages/element-plus/version.ts
 es
-Dpackages
 package-lock.json
-packages
-website
-scripts
