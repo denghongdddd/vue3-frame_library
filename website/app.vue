@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { use } from '@package/locale'
-import zhLocale from '@package/locale/lang/zh-cn'
+import { use } from 'element-plus/es/locale'
+import zhLocale from 'element-plus/es/locale/lang/zh-cn'
 
 /**加载中文版 */
 use(zhLocale)

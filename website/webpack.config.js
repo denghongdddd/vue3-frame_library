@@ -63,7 +63,6 @@ const config = {
     alias: {
       vue: 'vue/dist/vue.esm-browser.js',
       examples: path.resolve(__dirname),
-      "@package": path.resolve(__dirname,"..","packages"),
       "black-knight": path.resolve(__dirname, "..", "Dpackages"),
     },
   },

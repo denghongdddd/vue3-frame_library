@@ -69,7 +69,7 @@ const config = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     alias:{
-      "@package": path.resolve(__dirname,"..","packages"),
+      // "@package": path.resolve(__dirname,"..","packages"),
     },
   },
   externals,

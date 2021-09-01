@@ -12,14 +12,15 @@ import 'dayjs/locale/zh-cn'
 dayjs.locale('zh-cn') // todo: locale based on Doc site lang
 
 import App from './app.vue'
-import ElementPlus from "@package/element-plus"
-import '../packages/theme-chalk/index.scss'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 /**自定义组件 */
 import Dui from "black-knight"
 
 const app = createApp(App)
 
+app.use(ElementPlus)
 app.component('DemoBlock', demoBlock)
 app.component('SideNav', SideNav)
 
@@ -28,7 +29,6 @@ const router = createRouter({
   routes,
 })
 
-app.use(ElementPlus)
 app.use(Dui)
 app.use(router)
 router.isReady().then(() => {
