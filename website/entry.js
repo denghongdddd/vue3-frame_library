@@ -7,7 +7,6 @@ import demoBlock from './components/demo-block'
 import RightNav from './components/right-nav'
 import SideNav from './components/side-nav'
 
-import title from './i18n/title'
 import 'highlight.js/styles/color-brewer.css'
 import './demo-styles/index.scss'
 import './assets/styles/common.scss'
@@ -72,15 +71,7 @@ router.isReady().then(() => {
 //   }
   router.afterEach(async (route) => {
     await nextTick()
-    lang = location.hash.split('/')[1]
-    const data = title[route.meta.lang]
-    for (let val in data) {
-      if (new RegExp('^' + val, 'g').test(route.name)) {
-        document.title = data[val]
-        return
-      }
-    }
-    document.title = 'Element'
+    document.title = '自定义组件框架'
     ga('send', 'event', 'PageView', route.name)
   })
 })
