@@ -5,9 +5,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './route.config'
 import demoBlock from './components/demo-block'
 import RightNav from './components/right-nav'
-import MainFooter from './components/footer'
 import SideNav from './components/side-nav'
-import FooterNav from './components/footer-nav'
 import AppHeading from './components/heading'
 import AppLink from './components/link'
 import AppImg from './components/img'
@@ -39,9 +37,7 @@ app.config.globalProperties.$icon = icon
 
 app.component('DemoBlock', demoBlock)
 app.component('RightNav', RightNav)
-app.component('MainFooter', MainFooter)
 app.component('SideNav', SideNav)
-app.component('FooterNav', FooterNav)
 app.component('AppHeading', AppHeading)
 app.component('AppLink', AppLink)
 app.component('AppImg', AppImg)

@@ -9,7 +9,6 @@ import {
 } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 import { ElScrollbar, ElMessageBox, ElConfigProvider } from 'element-plus'
-import MainFooter from './components/footer'
 import zhLocale from 'element-plus/packages/locale/lang/zh-cn'
 
 
@@ -30,11 +29,7 @@ export default defineComponent({
   },
 
   render() {
-    const notPlay = this.lang !== 'play'
-
     const notComponent = !this.isComponent
-
-    const mainFooter = notPlay && notComponent ? h(MainFooter) : null
 
     const content = [
       h(
@@ -44,7 +39,6 @@ export default defineComponent({
         },
         [h(RouterView)]
       ),
-      mainFooter,
     ]
 
     const contentWrapper = notComponent
