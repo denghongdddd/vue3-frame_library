@@ -1,7 +1,5 @@
 import { defineAsyncComponent } from 'vue'
-import langs from './i18n/route'
 import navConfig from './nav.config'
-import { Language } from './enums/language'
 
 const LoadingComponent = {
   template: `<div v-loading="true" style="min-height: 500px; width: 100%;"></div>`,
@@ -20,68 +18,16 @@ const getAsyncComponent = (func) => {
   })
 }
 
-const LOAD_MAP = {
-  [Language.CN]: (name) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "zh-CN" */ `./pages/${name}.vue`)
-    )
-  },
-  [Language.EN]: (name) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "en-US" */ `./pages/${name}.vue`)
-    )
-  },
-  [Language.ES]: (name) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "es" */ `./pages/${name}.vue`)
-    )
-  },
-  [Language.FR]: (name) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "fr-FR" */ `./pages/${name}.vue`)
-    )
-  },
-  [Language.JP]: (name) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "jp" */ `./pages/${name}.vue`)
-    )
-  },
-}
-
-const load = function (lang, path) {
-  return LOAD_MAP[lang](path)
-}
-
-const LOAD_DOCS_MAP = {
-  [Language.CN]: (path) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "DOCS zh-CN" */ `./docs/zh-CN${path}.md`)
-    )
-  },
-  [Language.EN]: (path) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "DOCS en-US" */ `./docs/en-US${path}.md`)
-    )
-  },
-  [Language.ES]: (path) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "DOCS es" */ `./docs/es${path}.md`)
-    )
-  },
-  [Language.FR]: (path) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/fr-FR${path}.md`)
-    )
-  },
-  [Language.JP]: (path) => {
-    return getAsyncComponent(() =>
-      import(/* webpackChunkName: "DOCS jp" */ `./docs/jp${path}.md`)
-    )
-  },
+const load = function (path) {
+  return getAsyncComponent(() =>
+    import(`./pages/${path}.vue`)
+  )
 }
 
 const loadDocs = function (lang, path) {
-  return LOAD_DOCS_MAP[lang](path)
+  return getAsyncComponent(() =>
+    import(`./docs/zh-CN${path}.md`)
+  )
 }
 
 const registerRoute = (navConfig) => {
@@ -91,7 +37,7 @@ const registerRoute = (navConfig) => {
     route.push({
       path: `/${lang}/component`,
       redirect: `/${lang}/component/installation`,
-      component: load(lang, 'component'),
+      component: load('component'),
       children: [],
     })
     navs.forEach((nav) => {
@@ -114,7 +60,7 @@ const registerRoute = (navConfig) => {
   function addRoute(page, lang, index) {
     const component =
       page.path === '/changelog'
-        ? load(lang, 'changelog')
+        ? load('changelog')
         : loadDocs(lang, page.path)
     let child = {
       path: page.path.slice(1),
@@ -134,71 +80,20 @@ const registerRoute = (navConfig) => {
 
 let route = registerRoute(navConfig)
 
-const generateMiscRoutes = function (lang) {
-  let guideRoute = {
-    path: `/${lang}/guide`, // 指南
-    redirect: `/${lang}/guide/design`,
-    component: load(lang, 'guide'),
-    children: [
-      {
-        path: 'design', // 设计原则
-        name: 'guide-design' + lang,
-        meta: { lang },
-        component: load(lang, 'design'),
-      },
-      {
-        path: 'nav', // 导航
-        name: 'guide-nav' + lang,
-        meta: { lang },
-        component: load(lang, 'nav'),
-      },
-    ],
-  }
-
-  let resourceRoute = {
-    path: `/${lang}/resource`, // 资源
-    meta: { lang },
-    name: 'resource' + lang,
-    component: load(lang, 'resource'),
-  }
-
-  let indexRoute = {
-    path: `/${lang}`, // 首页
-    meta: { lang },
-    name: 'home' + lang,
-    component: load(lang, 'index'),
-  }
-
-  return [guideRoute, resourceRoute, indexRoute]
-}
-
-langs.forEach((lang) => {
-  route = route.concat(generateMiscRoutes(lang.lang))
-})
-
-let userLanguage =
-  localStorage.getItem('ELEMENT_LANGUAGE') ||
-  window.navigator.language ||
-  Language.EN
-let defaultPath = Language.EN
-if (userLanguage.indexOf('zh-') !== -1) {
-  defaultPath = Language.CN
-} else if (userLanguage.indexOf('es') !== -1) {
-  defaultPath = Language.ES
-} else if (userLanguage.indexOf('fr') !== -1) {
-  defaultPath = Language.FR
-} else if (userLanguage.indexOf('jp') !== -1) {
-  defaultPath = Language.JP
-}
-
 route = route.concat([
   {
+    path: `/zh-CN`, // 首页
+    meta: { lang:'zh-CN' },
+    name: 'homezh-CN',
+    component: load('index'),
+  },
+  {
     path: '/',
-    redirect: { path: `/${defaultPath}` },
+    redirect: { path: `/zh-CN` },
   },
   {
     path: '/*',
-    redirect: { path: `/${defaultPath}` },
+    redirect: { path: `/zh-CN` },
   },
 ])
 
