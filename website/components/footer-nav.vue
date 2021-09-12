@@ -53,7 +53,7 @@ export default {
 
   methods: {
     setNav() {
-      let nav = navConfig[this.lang]
+      let nav = navConfig
       this.nav = [nav[0]].concat(nav[1].children)
       nav[2].groups
         .map((group) => group.list)

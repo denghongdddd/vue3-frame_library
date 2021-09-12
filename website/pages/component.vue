@@ -2,7 +2,7 @@
   <el-scrollbar ref="componentScrollBar" class="page-component__scroll">
     <div class="page-container page-component">
       <el-scrollbar class="page-component__nav">
-        <side-nav :data="navsData[lang]" :base="`/${lang}/component`" />
+        <side-nav :data="navsData" :base="`/${lang}/component`" />
       </el-scrollbar>
       <div class="page-component__content">
         <div class="content-wrap">
@@ -27,7 +27,7 @@ import { throttle } from 'throttle-debounce'
 export default {
   data() {
     return {
-      lang: this.$route.meta.lang,
+      lang: 'zh-CN',
       navsData,
       scrollTop: 0,
       showHeader: true,

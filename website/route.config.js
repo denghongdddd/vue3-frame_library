@@ -8,7 +8,7 @@ const ErrorComponent = {
   template: `
     <div style="text-align: center;padding: 100px 0;">Loading error. Please refresh the page and try again</div>`,
 }
-const getAsyncComponent = (func) => {
+const getAsyncComponent = func => {
   return defineAsyncComponent({
     loader: func,
     delay: 0,
@@ -19,66 +19,46 @@ const getAsyncComponent = (func) => {
 }
 
 const load = function (path) {
-  return getAsyncComponent(() =>
-    import(`./pages/${path}.vue`)
-  )
+  return getAsyncComponent(() =>import(`./pages/${path}.vue`) )
 }
 
 const loadDocs = function (lang, path) {
-  return getAsyncComponent(() =>
-    import(`./docs/zh-CN${path}.md`)
-  )
+  return getAsyncComponent(() =>import(`./docs/zh-CN${path}.md`) )
 }
 
-const registerRoute = (navConfig) => {
-  let route = []
-  Object.keys(navConfig).forEach((lang, index) => {
-    let navs = navConfig[lang]
-    route.push({
-      path: `/${lang}/component`,
-      redirect: `/${lang}/component/installation`,
-      component: load('component'),
-      children: [],
-    })
-    navs.forEach((nav) => {
-      if (nav.href) return
-      if (nav.groups) {
-        nav.groups.forEach((group) => {
-          group.list.forEach((nav) => {
-            addRoute(nav, lang, index)
-          })
-        })
-      } else if (nav.children) {
-        nav.children.forEach((nav) => {
-          addRoute(nav, lang, index)
-        })
-      } else {
-        addRoute(nav, lang, index)
-      }
-    })
+const registerRoute = () => {
+  let route={
+    path: `/zh-CN/component`,
+    redirect: `/zh-CN/component/installation`,
+    component: load('component'),
+    children: [],
+  }
+  navConfig.forEach( nav=>{
+    if(nav.href)return
+    if(nav.groups){
+      nav.groups.forEach(group=>{
+        route.children=route.children.concat(group.list.map(navSup=> addRoute(navSup)))
+      })
+    }else if(nav.children){
+      route.children=route.children.concat(nav.children.map(navSup=>addRoute(navSup)))
+    }else route.children=route.children.concat(addRoute(nav))
   })
-  function addRoute(page, lang, index) {
-    const component =
-      page.path === '/changelog'
-        ? load('changelog')
-        : loadDocs(lang, page.path)
-    let child = {
+  function addRoute(page){
+    const component = page.path=='/changelog'?load('changelog'):loadDocs('zh-CN',page.path)
+    return {
       path: page.path.slice(1),
-      meta: {
+      meta:{
         title: page.title || page.name,
         description: page.description,
-        lang,
+        lang: 'zh-CN',
       },
-      name: 'component-' + lang + (page.title || page.name),
-      component: component.default || component,
+      name: 'component-zh-CN'+(page.title||page.name),
+      component: component.default||component,
     }
-
-    route[index].children.push(child)
   }
-  return route
+  return [route]
 }
-
-let route = registerRoute(navConfig)
+let route = registerRoute()
 
 route = route.concat([
   {
