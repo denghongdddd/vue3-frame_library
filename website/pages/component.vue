@@ -2,17 +2,24 @@
   <el-scrollbar ref="componentScrollBar" class="page-component__scroll">
     <div class="page-container page-component">
       <el-scrollbar class="page-component__nav">
-        <side-nav :data="navsData" base="" />
+        <side-nav :data="navsData[lang]" :base="`/${lang}/component`" />
       </el-scrollbar>
       <div class="page-component__content">
         <div class="content-wrap">
           <router-view class="content" />
         </div>
+        <footer-nav />
       </div>
+      <el-backtop
+        v-if="showBackToTop"
+        target=".page-component__scroll .el-scrollbar__wrap"
+        :right="100"
+        :bottom="50"
+      />
     </div>
   </el-scrollbar>
 </template>
-<script>
+<script lang="ts">
 import bus from '../bus'
 import navsData from '../nav.config.json'
 import { throttle } from 'throttle-debounce'
@@ -20,12 +27,18 @@ import { throttle } from 'throttle-debounce'
 export default {
   data() {
     return {
+      lang: this.$route.meta.lang,
       navsData,
       scrollTop: 0,
       showHeader: true,
       componentScrollBar: null,
       componentScrollBoxElement: null,
     }
+  },
+  computed: {
+    showBackToTop() {
+      return !this.$route.path.match(/backtop/)
+    },
   },
   watch: {
     '$route.path'() {
@@ -35,48 +48,61 @@ export default {
         this.componentScrollBar.update()
       })
     },
+    '$route.hash'() {
+      this.$nextTick(() => {
+        this.goAnchor()
+      })
+    },
   },
   created() {
-    bus.$on('nav-fade', val => {
+    bus.$on('nav-fade', (val) => {
       this.navFaded = val
     })
   },
   mounted() {
     this.componentScrollBar = this.$refs.componentScrollBar
-    this.componentScrollBox = this.componentScrollBar.$el.querySelector('.el-scrollbar__wrap')
+    this.componentScrollBox = this.componentScrollBar.$el.querySelector(
+      '.el-scrollbar__wrap'
+    )
     this.throttledScrollHandler = throttle(300, this.handleScroll)
-    this.componentScrollBox.addEventListener('scroll', this.throttledScrollHandler)
+    this.componentScrollBox.addEventListener(
+      'scroll',
+      this.throttledScrollHandler
+    )
     document.body.classList.add('is-component')
     this.addContentObserver()
+    this.goAnchor()
   },
   unmounted() {
     document.body.classList.remove('is-component')
   },
   beforeUnmount() {
-    this.componentScrollBox.removeEventListener('scroll', this.throttledScrollHandler)
+    this.componentScrollBox.removeEventListener(
+      'scroll',
+      this.throttledScrollHandler
+    )
     this.observer.disconnect()
   },
   methods: {
     addContentObserver() {
-      this.observer = new MutationObserver((mutationsList, observer) => {
-        for(const mutation of mutationsList) {
+      this.observer = new MutationObserver((mutationsList) => {
+        for (const mutation of mutationsList) {
           if (mutation.type === 'childList') {
             this.renderAnchorHref()
             this.goAnchor()
           }
         }
       })
-      this.observer.observe(
-        document.querySelector('.content-wrap'),
-        { childList: true },
-      )
+      this.observer.observe(document.querySelector('.content-wrap'), {
+        childList: true,
+      })
     },
     renderAnchorHref() {
       if (/changelog/g.test(location.href)) return
       const anchors = document.querySelectorAll('h2 a,h3 a,h4 a,h5 a')
-      const basePath = location.href.split('#').splice(0, 2).join('#');
+      const basePath = location.href.split('#').splice(0, 2).join('#')
 
-      [].slice.call(anchors).forEach(a => {
+      ;[].slice.call(anchors).forEach((a) => {
         const href = a.getAttribute('href')
         if (href.indexOf('#') === 0) {
           a.href = basePath + href
@@ -92,7 +118,7 @@ export default {
         if (!elm) return
 
         setTimeout(() => {
-          this.componentScrollBox.scrollTop = elm.offsetTop
+          this.componentScrollBox.scrollTop = (elm as HTMLElement).offsetTop
         }, 50)
       }
     },
@@ -115,9 +141,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .page-component__scroll {
-  height: calc(100% );
+  height: 100%;
 
-  ::v-deep( > .el-scrollbar__wrap) {
+  ::v-deep(> .el-scrollbar__wrap) {
     overflow-x: auto;
   }
 }
@@ -127,7 +153,7 @@ export default {
   height: 100%;
 
   &.page-container {
-    padding: 0;
+    padding: 40px;
   }
 
   .page-component__nav {
@@ -135,9 +161,9 @@ export default {
     position: absolute;
     top: 0;
     bottom: 0;
-    transition: padding-top .3s;
-    
-    ::v-deep( > .el-scrollbar__wrap) {
+    transition: padding-top 0.3s;
+
+    ::v-deep(> .el-scrollbar__wrap) {
       height: 100%;
       overflow-x: auto;
     }
@@ -149,7 +175,6 @@ export default {
 
   .side-nav {
     height: 100%;
-    padding-top: 50px;
     padding-bottom: 50px;
     padding-right: 0;
 
@@ -161,6 +186,7 @@ export default {
   .page-component__content {
     padding-left: 270px;
     padding-bottom: 100px;
+    margin-right: 150px;
     box-sizing: border-box;
   }
   .content-wrap {
@@ -168,13 +194,7 @@ export default {
   }
 
   .content {
-    padding-top: 50px;
-
     ::v-deep(>) {
-      h3 {
-        margin: 55px 0 20px;
-      }
-
       table {
         border-collapse: collapse;
         width: 100%;
@@ -187,7 +207,8 @@ export default {
           font-weight: normal;
         }
 
-        td, th {
+        td,
+        th {
           border-bottom: 1px solid #dcdfe6;
           padding: 15px;
           max-width: 250px;
@@ -196,15 +217,16 @@ export default {
         th {
           text-align: left;
           white-space: nowrap;
-          color: #909399;
+          color: var(--el-text-color-secondary);
           font-weight: normal;
         }
 
         td {
-          color: #606266;
+          color: var(--el-text-color-regular);
         }
 
-        th:first-child, td:first-child {
+        th:first-child,
+        td:first-child {
           padding-left: 10px;
         }
       }
@@ -216,6 +238,14 @@ export default {
         color: #5e6d82;
         line-height: 2em;
       }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .page-component {
+    .page-component__content {
+      margin-right: 0;
     }
   }
 }
