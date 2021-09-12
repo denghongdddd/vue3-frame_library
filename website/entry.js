@@ -6,9 +6,6 @@ import routes from './route.config'
 import demoBlock from './components/demo-block'
 import RightNav from './components/right-nav'
 import SideNav from './components/side-nav'
-import AppHeading from './components/heading'
-import AppLink from './components/link'
-import AppImg from './components/img'
 
 import title from './i18n/title'
 import 'highlight.js/styles/color-brewer.css'
@@ -38,9 +35,6 @@ app.config.globalProperties.$icon = icon
 app.component('DemoBlock', demoBlock)
 app.component('RightNav', RightNav)
 app.component('SideNav', SideNav)
-app.component('AppHeading', AppHeading)
-app.component('AppLink', AppLink)
-app.component('AppImg', AppImg)
 
 const router = createRouter({
   history: createWebHashHistory(),
