@@ -6,7 +6,6 @@ import routes from './route.config'
 import demoBlock from './components/demo-block'
 import RightNav from './components/right-nav'
 import MainFooter from './components/footer'
-import MainHeader from './components/header'
 import SideNav from './components/side-nav'
 import FooterNav from './components/footer-nav'
 import AppHeading from './components/heading'
@@ -41,7 +40,6 @@ app.config.globalProperties.$icon = icon
 app.component('DemoBlock', demoBlock)
 app.component('RightNav', RightNav)
 app.component('MainFooter', MainFooter)
-app.component('MainHeader', MainHeader)
 app.component('SideNav', SideNav)
 app.component('FooterNav', FooterNav)
 app.component('AppHeading', AppHeading)
