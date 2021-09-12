@@ -1,4 +1,4 @@
-import "black-knight/config/customeDate"
+import "black-knight/config/customDate"
 
 /**自定义组件 */
 import picker from "black-knight/components/picker"

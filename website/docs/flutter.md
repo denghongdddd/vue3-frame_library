@@ -1,14 +1,34 @@
-## 安装
+## 基本标签
 
-<el-card class="box-card">
-  <template #header>
-    <div class="card-header">
-      <span>标签</span>
-    </div>
-  </template>
-  <el-popover placement="bottom" title="标题" :width="200" trigger="hover" content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
-    <template #reference>
-      <el-button>click 激活</el-button>
-    </template>
-  </el-popover>
-</el-card>
+:::demo
+```html
+<template>
+  <el-menu :default-active="activeIndex" mode="horizontal">
+    <el-menu-item index="1">处理中心</el-menu-item>
+    <el-sub-menu index="2">
+      <template #title>我的工作台</template>
+      <el-menu-item index="2-1">选项1</el-menu-item>
+      <el-menu-item index="2-2">选项2</el-menu-item>
+      <el-menu-item index="2-3">选项3</el-menu-item>
+      <el-sub-menu index="2-4">
+        <template #title>选项4</template>
+        <el-menu-item index="2-4-1">选项1</el-menu-item>
+        <el-menu-item index="2-4-2">选项2</el-menu-item>
+        <el-menu-item index="2-4-3">选项3</el-menu-item>
+      </el-sub-menu>
+    </el-sub-menu>
+    <el-menu-item index="3" disabled>消息中心</el-menu-item>
+    <el-menu-item index="4">订单管理</el-menu-item>
+  </el-menu>
+</template>
+<script>
+  export default{
+    data(){
+      return{
+        activeIndex:"1",
+      }
+    },
+  }
+</script>
+```
+:::
