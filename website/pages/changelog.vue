@@ -29,8 +29,7 @@ export default {
   },
   computed: {
     langConfig() {
-      return pageLang.filter((config) => config.lang === this.lang)[0].pages
-        .changelog
+      return pageLang.filter( config => config.lang === this.lang)[0].pages.changelog
     },
   },
   mounted() {
