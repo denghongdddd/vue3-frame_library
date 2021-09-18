@@ -89,6 +89,7 @@ const config = {
     // 如果使用 vue 的生产环境构建包，无法启用 hmr
     // 因为生产环境下 vue 没有注入 hmr 必须的 __VUE_HMR_RUNTIME__ api
     hot: !isVueProd,
+    host:'0.0.0.0',
     stats: 'minimal',
     publicPath: '/',
     contentBase: __dirname,
