@@ -72,6 +72,7 @@ const config = {
     alias: {
       vue: `vue/dist/${vueBundle}`,
       examples: path.resolve(__dirname),
+      'black-knight':path.resolve(__dirname, '..', 'Dpackages'),
     },
   },
   plugins: [
@@ -85,6 +86,7 @@ const config = {
     new ProgressBarPlugin(),
   ],
   devServer: {
+    useLocalIp: true,
     inline: true,
     // 如果使用 vue 的生产环境构建包，无法启用 hmr
     // 因为生产环境下 vue 没有注入 hmr 必须的 __VUE_HMR_RUNTIME__ api
@@ -123,7 +125,7 @@ config.plugins.push(
   new webpack.DefinePlugin({
     __VUE_OPTIONS_API__: JSON.stringify(true),
     __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
-  })
+  }),
 )
 cssRule.use.unshift(MiniCssExtractPlugin.loader)
 // } else {

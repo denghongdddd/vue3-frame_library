@@ -16,7 +16,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
 /**自定义组件 */
-import Dui from "black-knight"
+import Dui from 'black-knight'
 
 const app = createApp(App)
 

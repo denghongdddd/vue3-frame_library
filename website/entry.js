@@ -12,13 +12,11 @@ import './demo-styles/index.scss'
 import './assets/styles/common.scss'
 import './assets/styles/fonts/style.css'
 import icon from './icon.json'
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
-dayjs.locale('zh-cn') // todo: locale based on Doc site lang
 import compLang from './i18n/component.json'
 import App from './app.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import Dpackages from 'black-knight'
 
 const app = createApp(App)
 
@@ -40,10 +38,11 @@ const router = createRouter({
   routes,
 })
 app.use(ElementPlus)
+app.use(Dpackages)
 app.use(router)
 router.isReady().then(() => {
   let lang = location.hash.split('/')[1]
-  let langConfig = compLang.filter((config) => config.lang === lang)[0][
+  let langConfig = compLang.filter( config => config.lang === lang)[0][
     'demo-block'
   ]
 
