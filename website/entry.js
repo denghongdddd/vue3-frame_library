@@ -68,7 +68,7 @@ router.isReady().then(() => {
 //         })
 //       })
 //   }
-  router.afterEach(async (route) => {
+  router.afterEach(async route => {
     await nextTick()
     document.title = '自定义组件框架'
     ga('send', 'event', 'PageView', route.name)
