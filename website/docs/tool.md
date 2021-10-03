@@ -25,7 +25,7 @@
 :::demo 创建延迟3秒的对象
   ```html
     <template>
-      <table class="default">
+      <table class="tableDefault">
         <tr> <td>立刻运行</td><td><button @click="add.now('----test------')">累计</button></td><td rowspan="5">{{num}}</td> </tr>
         <tr> <td>运行后延迟</td><td><button @click="add.before('----test------')">累计</button></td> </tr>
         <tr> <td>运行前延迟</td><td><button @click="add.after('----test------')">累计</button></td> </tr>

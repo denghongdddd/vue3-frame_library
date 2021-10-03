@@ -1,0 +1,16 @@
+.demo-block.demo-tool{
+  .tableDefault{
+    width:100%;
+    border-collapse: collapse;
+    tr{
+      td{
+        padding:10px;
+        border:1px solid #ddd;
+        text-align: center;
+        button{
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

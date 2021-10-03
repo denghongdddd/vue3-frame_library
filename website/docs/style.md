@@ -2,7 +2,7 @@
 :::demo
 ```html
     <template>
-        <div class="vague">
+        <div class="demo_vague">
             <div class="btn"><a>Read More</a></div>
         </div>
     </template>
