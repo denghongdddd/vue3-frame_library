@@ -32,7 +32,7 @@ app.config.globalProperties.$icon = icon
 app.component('DemoBlock', demoBlock)
 app.component('RightNav', RightNav)
 app.component('SideNav', SideNav)
-
+console.log("sdasdf")
 const router = createRouter({
   history: createWebHashHistory(),
   routes,

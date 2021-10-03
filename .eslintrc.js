@@ -25,10 +25,10 @@ module.exports = {
     'no-trailing-spaces': 'error',
     'comma-style': ['error', 'last'],
     'comma-dangle': ['error', 'always-multiline'],
-    quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+    // quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],//引号
     camelcase: ['error', { properties: 'never' }],
     semi: ['error', 'never'],
-    indent: ['error', 2, { SwitchCase: 1 }],
+    // indent: ['error', 2, { SwitchCase: 1 }],//缩进
     'object-curly-spacing': ['error', 'always'],
     'arrow-parens': ['error', 'as-needed'],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
