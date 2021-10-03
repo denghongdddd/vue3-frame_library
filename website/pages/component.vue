@@ -21,7 +21,7 @@
 </template>
 <script lang="ts">
 import bus from '../bus'
-import navsData from '../nav.config.json'
+import navsData from 'examples/nav.config.json'
 import { throttle } from 'throttle-debounce'
 
 export default {
