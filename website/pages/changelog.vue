@@ -4,9 +4,7 @@
       <el-button class="fr">
         <a
           href="https://github.com/element-plus/element-plus/releases"
-          target="_blank"
-          >GitHub Releases</a
-        >
+          target="_blank">GitHub Releases</a>
       </el-button>
       {{ langConfig[1] }}
     </div>

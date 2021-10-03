@@ -69,12 +69,10 @@ route = route.concat([
   },
   {
     path: '/',
-    // redirect: { path: `/zh-CN` },
     redirect: { path: `/zh-CN/component/installation` },
   },
   {
     path: '/*',
-    // redirect: { path: `/zh-CN` },
     redirect: { path: `/zh-CN/component/installation` },
   },
 ])

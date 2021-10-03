@@ -14,13 +14,14 @@
         v-if="showBackToTop"
         target=".page-component__scroll .el-scrollbar__wrap"
         :right="100"
-        :bottom="50" />
+        :bottom="50"
+      />
     </div>
   </el-scrollbar>
 </template>
 <script lang="ts">
 import bus from '../bus'
-import navsData from 'examples/nav.config.json'
+import navsData from '../nav.config.json'
 import { throttle } from 'throttle-debounce'
 
 export default {
