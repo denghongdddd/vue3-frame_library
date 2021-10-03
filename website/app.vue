@@ -37,7 +37,7 @@ export default defineComponent({
         {
           class: 'main-cnt',
         },
-        [h(RouterView)]
+        [h(RouterView)],
       ),
     ]
 
@@ -60,10 +60,10 @@ export default defineComponent({
                 'is-component': this.isComponent,
               },
             },
-            [ contentWrapper]
+            [ contentWrapper],
           )
         },
-      }
+      },
     )
   },
 })

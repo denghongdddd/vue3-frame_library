@@ -1,6 +1,6 @@
 <script>
-import RadiusBox from "../../components/demo/border/radius-box.vue";
-import ShadowBox from "../../components/demo/border/shadow-box.vue";
+import RadiusBox from "../components/demo/border/radius-box.vue";
+import ShadowBox from "../components/demo/border/shadow-box.vue";
 
 const radiusGroup =  [
   {

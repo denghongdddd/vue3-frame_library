@@ -12,8 +12,7 @@
         class="jumbotron-red"
         :style="{
           height: mainImgOffset + 'px',
-        }"
-      >
+        }">
         <img src="~examples/assets/images/theme-index-red.png" alt="" />
       </div>
     </div>

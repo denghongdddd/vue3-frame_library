@@ -71,7 +71,7 @@ const config = {
     extensions: ['.ts', '.tsx', '.js', '.vue', '.json'],
     alias: {
       vue: `vue/dist/${vueBundle}`,
-      examples: path.resolve(__dirname),
+      "examples": path.resolve(__dirname),
       'black-knight':path.resolve(__dirname, '..', 'Dpackages'),
     },
   },

@@ -1,9 +1,9 @@
 <script>
-  import bus from '../../bus';
-  import { tintColor } from '../../color.js';
-  import BorderBox from "../../components/demo/color/border-box.vue"
-  import ColorBox from "../../components/demo/color/color-box.vue"
-  import TextBox from "../../components/demo/color/text-box.vue"
+  import bus from '../bus';
+  import { tintColor } from '../color.js';
+  import BorderBox from "../components/demo/color/border-box.vue"
+  import ColorBox from "../components/demo/color/color-box.vue"
+  import TextBox from "../components/demo/color/text-box.vue"
   const borderColors = [
     {
       name: '一级边框',

@@ -22,8 +22,8 @@ const load = function (path) {
   return getAsyncComponent(() =>import(`./pages/${path}.vue`) )
 }
 
-const loadDocs = function (lang, path) {
-  return getAsyncComponent(() =>import(`./docs/zh-CN${path}.md`) )
+const loadDocs = function ( path) {
+  return getAsyncComponent(() =>import(`./docs${path}.md`) )
 }
 
 const registerRoute = () => {
@@ -44,7 +44,7 @@ const registerRoute = () => {
     }else route.children=route.children.concat(addRoute(nav))
   })
   function addRoute(page){
-    const component = page.path=='/changelog'?load('changelog'):loadDocs('zh-CN',page.path)
+    const component = page.path=='/changelog'?load('changelog'):loadDocs(page.path)
     return {
       path: page.path.slice(1),
       meta:{
