@@ -62,7 +62,7 @@ let route = registerRoute()
 
 route = route.concat([
   {
-    path: `/zh-CN`, // 首页
+    path: `/`, // 首页
     meta: { lang:'zh-CN' },
     name: 'homezh-CN',
     component: load('index'),
