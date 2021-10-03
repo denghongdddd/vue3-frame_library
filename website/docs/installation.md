@@ -45,3 +45,16 @@ $ npm install element-plus --save
 <!-- ```
 
 ::: -->
+
+<!-- 引用资源 examples => website 文件夹位置
+<img src="~examples/assets/images/Axure-Components.svg" alt=""> -->
+
+## 安装
+
+### npm 安装
+
+推荐使用 npm 的方式安装，它能更好地和 [webpack](https://webpack.js.org/) 打包工具配合使用。
+
+```shell
+npm install git+https://github.com/denghongdddd/vue3-frame_library --save
+```

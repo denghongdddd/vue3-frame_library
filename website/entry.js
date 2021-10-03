@@ -41,10 +41,10 @@ app.use(ElementPlus)
 app.use(Dpackages)
 app.use(router)
 router.isReady().then(() => {
-  let lang = location.hash.split('/')[1]
-  let langConfig = compLang.filter( config => config.lang === lang)[0][
-    'demo-block'
-  ]
+  // let lang = location.hash.split('/')[1]
+  // let langConfig = compLang.filter( config => config.lang === lang)[0][
+  //   'demo-block'
+  // ]
 
 //   app.config.globalProperties.$copySvgIcon = (iconName) => {
 //     clipboardCopy(

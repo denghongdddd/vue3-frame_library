@@ -68,10 +68,6 @@ route = route.concat([
     component: load('index'),
   },
   {
-    path: '/',
-    redirect: { path: `/zh-CN/component/installation` },
-  },
-  {
     path: '/*',
     redirect: { path: `/zh-CN/component/installation` },
   },
