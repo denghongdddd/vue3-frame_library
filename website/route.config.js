@@ -65,7 +65,8 @@ route = route.concat([
     path: `/`, // 首页
     meta: { lang:'zh-CN' },
     name: 'homezh-CN',
-    component: load('index'),
+    // component: load('index'),
+    redirect:{path:'/zh-CN/component/installation'},
   },
   {
     path: '/*',
