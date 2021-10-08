@@ -90,7 +90,7 @@
 
                 //交通
                 stationList:[],
-                addTraffic(map){
+                addTraffic(){
                     town.forEach((v,k)=>{
                         this.stationList.push(new myMarker(v.name,{
                             map,
@@ -116,7 +116,8 @@
                         }))
                     })
                 },
-                addWay(map){ //轨迹图样式映射
+                addWay(){ //轨迹图样式映射
+                    console.log(heightRailway,"-------heightRailway-----")
                     this.heightRailway=new TMap.visualization.Trail({
                         pickStyle(i){
                             return{width:5}
@@ -153,19 +154,18 @@
                     this.expressway.show()
                     this.heightRailway.show()
                 },
-                hideWay(){
+                removeTraffic(){
+                    this.stationList.forEach((v,k)=>v.destroy() )
+                    this.stationList=[]
+                    
                     this.railway.hide()
                     this.expressway.hide()
                     this.heightRailway.hide()
                 },
-                removeTraffic(){
-                    this.stationList.forEach((v,k)=>v.destroy() )
-                    this.stationList=[]
-                },
                 
                 //镇名标签
                 townNameList:[],
-                addTownMarker(map){
+                addTownMarker(){
                     town.forEach((v,k)=>{
                         this.townNameList.push(new miniMarker(v.name, "TownName",{
                             map,
@@ -180,7 +180,7 @@
 
                 //水果标签
                 fruitList:[],
-                addFruitMarker(map){
+                addFruitMarker(){
                     fruit.forEach((v,k)=>{
                         this.fruitList.push(new miniMarker(v.name, "fruit",{
                             map,
@@ -195,8 +195,7 @@
 
                 //食物柱状图
                 footHexagon:null,
-                addFood(map){
-                    console.log(food,"------food--------")
+                addFood(){
                     this.footHexagon=new TMap.visualization.Hexagon({
                         radius:1000, //六边形中心点到端点的距离（半径）
                         extrudable: true, //六边形是否可拔起
@@ -273,7 +272,7 @@
 
             watch(tabIndex,(n,o)=>{
                 switch(o){
-                    case "0": tmapTool.hideWay(); tmapTool.removeTraffic(); break;
+                    case "0": tmapTool.removeTraffic(); break;
                     case "2": tmapTool.removeFruitMarker(); break;
                     case "3": tmapTool.removeFood(); break;
                     case "1": //地貌
@@ -281,64 +280,20 @@
                     case "5":tmapTool.removeTownMarker();//气候带
                 }
                 switch(n){
-                    case "0":
-                        satelliteMap.setSrc("../assets/images/map/road.png");
-                        tmapTool.addTraffic(map);
-                        tmapTool.showWay();
-                        map.easeTo({
-                            zoom:10,
-                            rotation:0,
-                            pitch: 30,
-                            center: new TMap.LatLng(25.86, 101.86)
-                        },{duration: 2000});
-                        break;
-                    case "1"://海拔
-                        satelliteMap.setSrc("../assets/images/map/terrain.png");
-                        tmapTool.addTownMarker(map);
-                        map.easeTo({
-                            zoom: 10,
-                            rotation: 0,
-                            pitch: 20,
-                        },{duration:2000});
-                        break;
-                    case "2"://蔬菜
-                        satelliteMap.setSrc("../assets/images/map/sg.png");
-                        tmapTool.addFruitMarker(map);
-                        map.easeTo({
-                            zoom: 10.5,
-                            rotation: 0,
-                            pitch: 40,
-                        },{duration:2000});
-                        break;
-                    case "3"://粮食
-                        satelliteMap.setSrc("../assets/images/map/qhd.png");
-                        tmapTool.addFood(map);
-                        map.easeTo({
-                            zoom: 10,
-                            rotation: 0,
-                            pitch: 35,
-                        },{duration:2000});
-                        break;
-                    case "4"://土壤
-                        satelliteMap.setSrc("../assets/images/map/tr.png");
-                        tmapTool.addTownMarker(map);
-                        map.easeTo({
-                            zoom: 10,
-                            rotation: 0,
-                            pitch: 20,
-                        },{duration:2000});
-                        break;
-                    case "5"://气候带
-                        satelliteMap.setSrc("../assets/images/map/qhd.png");
-                        tmapTool.addTownMarker(map);
-                        map.easeTo({
-                            zoom: 10,
-                            rotation: 0,
-                            pitch: 0,
-                        },{duration:2000});
-                        break;
+                    case "0":setMap("road", "addTraffic", { zoom: 10, rotation: 0, pitch: 30, center:new TMap.LatLng(25.86, 101.86) }); break;//海拔
+                    case "1":setMap("terrain", "addTownMarker", { zoom: 10, rotation: 0, pitch: 20 }); break;//海拔
+                    case "2":setMap("sg", "addFruitMarker", { zoom: 10.5, rotation: 0, pitch: 40 }); break;//蔬菜
+                    case "3":setMap("qhd", "addFood", { zoom: 10, rotation: 0, pitch: 35 }); break;//土壤
+                    case "4":setMap("tr", "addTownMarker", { zoom: 10, rotation: 0, pitch: 20 }); break;//土壤
+                    case "5":setMap("qhd", "addTownMarker", { zoom: 10, rotation: 0, pitch: 0 }); break;//气候带
                 }
             });
+            function setMap(img, tool, transtation){
+                satelliteMap.setSrc(`../assets/images/map/${img}.png`);
+                tmapTool[tool]();
+                tool=="addTraffic"&&tmapTool.showWay();
+                map.easeTo(transtation, {duration:2000});
+            }
 
             return{
                 mapDom,
