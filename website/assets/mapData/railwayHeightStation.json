@@ -1,0 +1,27 @@
+{
+	"status": 0,
+	"message": "query ok",
+	"count": 8,
+	"request_id": "1822460402474015996240e41fdf7f9ae56a14771892",
+	"data": [{
+		"id": "15537700387526008931",
+		"title": "元谋西站",
+		"address": "云南省楚雄彝族自治州元谋县凤凰大道",
+		"tel": "",
+		"category": "基础设施:交通设施:火车站",
+		"type": 0,
+		"location": {
+			"lat": 25.708223,
+			"lng": 101.840607
+		},
+		"ad_info": {
+			"adcode": 532328,
+			"province": "云南省",
+			"city": "楚雄彝族自治州",
+			"district": "元谋县"
+		}
+	}],
+	"region": {
+		"title": "元谋县"
+	}
+}

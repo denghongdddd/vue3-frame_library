@@ -1,0 +1,284 @@
+[{
+	"name": "姜驿乡",
+	"lat": 26.037127,
+	"lng": 101.988350,
+	"fruit": [{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	}]
+}, {
+	"name": "江边乡",
+	"lat": 25.933186,
+	"lng": 101.891237,
+	"fruit": [{
+		"name": "芒果",
+		"yield": 30000,
+		"url": "../assets/images/map/mg.png"
+	}, {
+		"name": "葡萄",
+		"yield": 25000,
+		"url": "../assets/images/map/pt.png"
+	},
+	{
+		"name": "青枣",
+		"yield": 20000,
+		"url": "../assets/images/map/qz.png"
+	}, {
+		"name": "酸角",
+		"yield": 16000,
+		"url": "../assets/images/map/sj.png"
+	}]
+}, {
+	"name": "物茂乡",
+	"lat": 25.902073,
+	"lng": 101.766972,
+	"fruit": [{
+		"name": "洋葱",
+		"yield": 30000,
+		"url": "../assets/images/map/yc.png"
+	}, {
+		"name": "玉米",
+		"yield": 25000,
+		"url": "../assets/images/map/ym.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	}]
+}, {
+	"name": "黄瓜园镇",
+	"lat": 25.805497,
+	"lng": 101.860443,
+	"fruit": [{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "芒果",
+		"yield": 30000,
+		"url": "../assets/images/map/mg.png"
+	}, {
+		"name": "葡萄",
+		"yield": 25000,
+		"url": "../assets/images/map/pt.png"
+	}]
+}, {
+	"name": "新华乡",
+	"lat": 25.710653,
+	"lng": 101.681212,
+	"fruit": [{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	}]
+}, {
+	"name": "平田乡",
+	"lat": 25.736873,
+	"lng": 101.761275,
+	"fruit": [{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "芒果",
+		"yield": 30000,
+		"url": "../assets/images/map/mg.png"
+	}, {
+		"name": "葡萄",
+		"yield": 25000,
+		"url": "../assets/images/map/pt.png"
+	}]
+}, {
+	"name": "元马镇",
+	"lat": 25.701675,
+	"lng": 101.880318,
+	"fruit": [{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "芒果",
+		"yield": 30000,
+		"url": "../assets/images/map/mg.png"
+	}, {
+		"name": "葡萄",
+		"yield": 25000,
+		"url": "../assets/images/map/pt.png"
+	}]
+}, {
+	"name": "凉山乡",
+	"lat": 25.712753,
+	"lng": 101.976284,
+	"fruit": [{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "芒果",
+		"yield": 30000,
+		"url": "../assets/images/map/mg.png"
+	}, {
+		"name": "葡萄",
+		"yield": 25000,
+		"url": "../assets/images/map/pt.png"
+	}]
+}, {
+	"name": "老城乡",
+	"lat": 25.596376,
+	"lng": 101.887609,
+	"fruit": [{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "芒果",
+		"yield": 30000,
+		"url": "../assets/images/map/mg.png"
+	}, {
+		"name": "葡萄",
+		"yield": 25000,
+		"url": "../assets/images/map/pt.png"
+	}]
+}, {
+	"name": "羊街镇",
+	"lat": 25.466583,
+	"lng": 101.943285,
+	"fruit": [{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "黄瓜",
+		"yield": 20000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "龙眼",
+		"yield": 16000,
+		"url": "../assets/images/map/fq.png"
+	},
+	{
+		"name": "大豆",
+		"yield": 30000,
+		"url": "../assets/images/map/d.png"
+	}, {
+		"name": "番茄",
+		"yield": 25000,
+		"url": "../assets/images/map/fq.png"
+	}]
+}]

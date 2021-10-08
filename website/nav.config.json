@@ -1,6 +1,6 @@
 [
   {
-    "name": "开发指南",
+    "name": "文档",
     "children": [
       {
         "path": "/installation",
@@ -13,6 +13,10 @@
       {
         "path":"/flutter",
         "name":"flutter"
+      },
+      {
+        "path":"/map",
+        "name":"腾讯地图"
       }
     ]
   },
