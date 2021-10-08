@@ -117,7 +117,6 @@
                     })
                 },
                 addWay(){ //轨迹图样式映射
-                    console.log(heightRailway,"-------heightRailway-----")
                     this.heightRailway=new TMap.visualization.Trail({
                         pickStyle(i){
                             return{width:5}
