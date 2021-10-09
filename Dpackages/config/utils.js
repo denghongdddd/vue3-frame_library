@@ -225,7 +225,7 @@ export function delay(fun, time=0){
 			runing=true;
 			typeof fun=="function"&&await fun.bind(this)(...args)
 			clearTimeout(_time)
-			typeof event["begin"]=="function"&&event["begin"]()
+			typeof event["wait"]=="function"&&event["wait"]()
 			_time=setTimeout(()=>{
 				typeof event["end"]=="function"&&event["end"]()
 				runing=false
@@ -236,7 +236,7 @@ export function delay(fun, time=0){
 		if(!runing){
 			runing=true;
 			clearTimeout(_time);
-			typeof event["begin"]=="function"&&event["begin"]()
+			typeof event["wait"]=="function"&&event["wait"]()
 			_time=setTimeout(async ()=>{
 				typeof event["end"]=="function"&&event["end"]()
 				typeof fun=="function"&&await fun.bind(this)(...args)
@@ -245,14 +245,14 @@ export function delay(fun, time=0){
 		}
 	}
 	this.now=async function(...args){
-		clearTimeout(_time);
-		typeof event["begin"]=="function"&&event["begin"]()
-		runing=true;
-		typeof fun=="function"&&await fun.bind(this)(...args);
-		_time=setTimeout(()=>{
+		// if(!runing){
+			clearTimeout(_time);
+			typeof event["wait"]=="function"&&event["wait"]()
+			runing=true;
+			typeof fun=="function"&&await fun.bind(this)(...args);
 			typeof event["end"]=="function"&&event["end"]()
 			runing=false
-		},time)
+		// }
 	}
 
 	this.proceed=async function(...args){
@@ -262,7 +262,7 @@ export function delay(fun, time=0){
 			only=false;
 			typeof fun=="function"&&await fun.bind(this)(...args)
 			clearTimeout(_time)
-			typeof event["begin"]=="function"&&event["begin"]()
+			typeof event["wait"]=="function"&&event["wait"]()
 			_time=setTimeout(()=>{
 				runing=false;
 				typeof event["end"]=="function"&&event["end"]()

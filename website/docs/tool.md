@@ -23,44 +23,40 @@
 -----------------
 ## 延迟类
 :::demo 创建延迟3秒的对象
-  ```html
-    <template>
-      <table class="tableDefault">
-        <tr> <td>立刻运行</td><td><button @click="add.now('----test------')">累计</button></td><td rowspan="5">{{num}}</td> </tr>
-        <tr> <td>运行后延迟</td><td><button @click="add.before('----test------')">累计</button></td> </tr>
-        <tr> <td>运行前延迟</td><td><button @click="add.after('----test------')">累计</button></td> </tr>
-        <tr> <td>运行前延迟,延迟中有调用过,结束后回再次运行一次</td><td><button @click="add.proceed('----test------')">累计</button></td> </tr>
-        <tr> <td>监听延迟</td><td>{{listenerStatu}}</td> </tr>
-      </table>
-    </template>
-    <script>
-    const { delay } = require("black-knight/config/utils.js")
-      export default{
-        data(){
-          return{
-            num:0,
-            add: new delay(async (e)=>{
-              console.log(e)
-              this.num++
-            },3000),
-            listenerStatu:"未开始",
-          }
-        },
-        mounted(){
-          this.add.addEventListener("begin",()=>{
-            this.listenerStatu="延迟中..."
-          })
-          this.add.addEventListener("end",()=>{
-            this.listenerStatu="延迟结束"
-          })
-        },
-        methods:{
+```html
+<template>
+  <table class="tableDefault">
+    <tr> <td>立刻运行</td><td><button @click="add.now('----test------')">累计</button></td><td rowspan="5">{{num}}</td> </tr>
+    <tr> <td>运行后延迟</td><td><button @click="add.before('----test------')">累计</button></td> </tr>
+    <tr> <td>运行前延迟</td><td><button @click="add.after('----test------')">累计</button></td> </tr>
+    <tr> <td>运行前延迟,延迟中有调用过,结束后回再次运行一次</td><td><button @click="add.proceed('----test------')">累计</button></td> </tr>
+    <tr> <td>监听延迟</td><td>{{listenerStatu}}</td> </tr>
+  </table>
+</template>
+<script>
+  const { delay } = require("black-knight/config/utils.js")
+  import {defineComponent, ref, onMounted} from 'vue'
+  
+  export default defineComponent({
+    name:"delay",
+    setup(){
+      var num=ref(0);
+      let listenerStatu=ref("未开始");
+      let add=new delay(e=>num.value++,3000);
 
-        },
-        
+      onMounted(()=>{
+        add.addEventListener("wait",()=>listenerStatu.value="延迟中...")
+        add.addEventListener("end",()=>listenerStatu.value="延迟结束")
+      })
+      return{
+        num,
+        listenerStatu,
+        add,
       }
-    </script>
-  ```
+    }
+  })
+</script>
+```
 :::
 
 <br/>

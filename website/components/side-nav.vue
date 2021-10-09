@@ -23,8 +23,7 @@
               class="sponsor"
               href="https://www.renren.io/?from=element-ui"
               target="_blank"
-              :title="sponsorIntroR"
-            >
+              :title="sponsorIntroR">
               <img src="~examples/assets/images/renren.png" />
             </a>
           </li>
