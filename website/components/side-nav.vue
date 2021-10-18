@@ -30,54 +30,48 @@
         </ul>
       </li> -->
       <li v-for="(item, keyy) in data" :key="keyy" class="nav-item">
-        <a v-if="!item.path && !item.href" @click="expandMenu">{{
-          item.name
-        }}</a>
-        <a v-if="item.href" :href="item.href" target="_blank">{{
-          item.name
-        }}</a>
+        <a
+          v-if="!item.path && !item.href"
+          @click="expandMenu"
+          :class="{head:!!item.children||!!item.children}">
+          {{ item.name }}
+        </a>
+        <a v-if="item.href" :href="item.href" target="_blank">{{ item.name }}</a>
         <router-link
           v-if="item.path"
           active-class="active"
           :to="base + item.path"
           exact
-          v-text="item.title || item.name"
-        />
+          v-text="item.title || item.name"/>
         <ul v-if="item.children" class="pure-menu-list sub-nav">
           <li
             v-for="(navItem, key) in item.children"
             :key="key"
-            class="nav-item"
-          >
+            class="nav-item">
             <router-link
               class=""
               active-class="active"
               :to="base + navItem.path"
               exact
-              v-text="navItem.title || navItem.name"
-            />
+              v-text="navItem.title || navItem.name"/>
           </li>
         </ul>
         <template v-if="item.groups">
           <div v-for="(group, key) in item.groups" :key="key" class="nav-group">
-            <div class="nav-group__title" @click="expandMenu">
-              {{ group.groupName }}
-            </div>
+            <div class="nav-group__title" @click="expandMenu"> {{ group.groupName }} </div>
             <ul class="pure-menu-list">
               <li
                 v-for="(navItem, keey) in group.list"
                 v-show="!navItem.disabled"
                 :key="keey"
-                class="nav-item"
-              >
+                class="nav-item">
                 <el-badge v-if="navItem.beta" value="Beta">
                   <router-link
                     class=""
                     active-class="active"
                     :to="base + navItem.path"
                     exact
-                    v-text="navItem.title || navItem.name"
-                  />
+                    v-text="navItem.title || navItem.name"/>
                 </el-badge>
                 <router-link
                   v-else
@@ -277,6 +271,20 @@ export default defineComponent({
 
       &.active {
         color: #409eff;
+      }
+      &.head{
+        padding-left:10px;
+        font-weight: bold;
+        &:before{
+          content:" ";
+          position:absolute;
+          width:4px;
+          height:15px;
+          background:linear-gradient(#409eff,rgb(57, 47, 201));
+          border-radius: 50px;
+          left:1px;
+          top:10px;
+        }
       }
     }
 

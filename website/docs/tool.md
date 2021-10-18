@@ -59,6 +59,32 @@
 ```
 :::
 
+## 订阅者
+:::demo 
+```html
+<template>
+  <button @click="emit">激活事件</button>
+</template>
+<script>
+  const {provise} = require("black-knight/config/utils.js")
+  import {defineComponent} from 'vue';
+  export default defineComponent({
+    setup(){
+      let event=new provise()
+      event.on("demo",(...a)=>{
+        console.log("a=",a)
+      })
+      return{
+        emit(){
+          event.emit("demo",1,2,3)
+        },
+      }
+    }
+  })
+</script>
+```
+:::
+
 <br/>
 
 ## 排序
