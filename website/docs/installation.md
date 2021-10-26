@@ -56,5 +56,5 @@ $ npm install element-plus --save
 推荐使用 npm 的方式安装，它能更好地和 [webpack](https://webpack.js.org/) 打包工具配合使用。
 
 ```shell
-npm install git+https://github.com/denghongdddd/vue3-frame_library --save
+npm install git+https://codeup.aliyun.com/616d4e5f326ff4ef76a9842f/denghongdddd/vue3-frame_library.git --save
 ```
