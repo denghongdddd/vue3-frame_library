@@ -1,5 +1,5 @@
 
-* 💪 Vue 3.0 Composition API
+* Vue 3.0 Composition API
 
 ## Status: Beta
 
