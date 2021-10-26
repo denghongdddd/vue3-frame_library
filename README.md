@@ -1,10 +1,6 @@
 
 * Vue 3.0 Composition API
 
-## Status: Beta
-
-This project is still under heavy development. Feel free to join us and make your first pull request.
-
 ---
 
 ### 安装框架
