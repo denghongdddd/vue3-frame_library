@@ -10,12 +10,5 @@ This project is still under heavy development. Feel free to join us and make you
 ## Website preview
 With command
 ```bash
-$ yarn website-dev
-```
-the project will launch website for you to preview all existing component
-
-You can also use this command to start a blank page to debug
-```bash
-$ yarn website-dev:play
-//source file: ./website/play/index.vue
+npm install git+https://codeup.aliyun.com/616d4e5f326ff4ef76a9842f/denghongdddd/vue3-frame_library.git --save
 ```
