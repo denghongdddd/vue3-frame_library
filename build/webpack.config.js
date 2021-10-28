@@ -30,7 +30,6 @@ externals.push(
     "gsap":"gsap",
   },
   /^black-knight.*/,
-  // /^dayjs.*/,
   // /^lodash.*/
 )
 
@@ -46,7 +45,6 @@ const config = {
     umdNamedDefine: true,
     globalObject: 'typeof self !== \'undefined\' ? self : this',
   },
-  lintOnSave: false,
   module: {
     rules: [
       {
@@ -71,6 +69,7 @@ const config = {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     alias:{
       // "@package": path.resolve(__dirname,"..","packages"),
+      "black-knight": path.resolve(__dirname, '..','Dpackages'),
     },
   },
   externals,
