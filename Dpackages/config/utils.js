@@ -180,10 +180,19 @@ export function isEmpty(val) {
 export function provise(){
 	let subscriber={}
 	this.on=(name,callback)=>{
-		if(name&&typeof callback === "function"){
+		if(name&&callback instanceof Function){
 			let callbackList = subscriber[name]||[]
 			if((subscriber[name]||[]).indexOf(callback)<0){
 				callbackList.push(callback)
+				subscriber[name]=callbackList
+			}
+		}
+	}
+	this.onSync=(name, callback, time)=>{
+		if(name&&callback instanceof Function){
+			let callbackList = subscriber[name]||[]
+			if((subscriber[name]||[]).indexOf(callback)<0){
+				callbackList.push(proceed(callback, time))
 				subscriber[name]=callbackList
 			}
 		}
@@ -213,9 +222,45 @@ export function provise(){
 		}
 	}
 }
+/**
+ * 同步方法
+ */
+function proceed(callback,time=100){
+	let runing=false;
+	let only=true;
+	
+	let newV=null;
+	let backup=null;
+	let exec=async function(...args){
+		if(newV===null){
+			newV=args
+		}else{
+			backup=args
+		}
+
+		only=true
+		if(!runing){
+			runing=true;
+			only=false;
+			typeof callback==='function'&&await callback(...newV);
+			setTimeout(()=>{
+				newV=backup;
+				backup=null;
+
+				runing=false
+				if(only){
+					exec(...newV)
+				}else{
+					newV=null;
+				}
+			}, time)
+		}
+	}
+	return exec;
+}
 
 /**延时方法 */
-export function delay(fun, time=0){
+export function delay(fun, durating=0){
 	var runing=false;
 	var only = true;
 	var _time=null;
@@ -229,7 +274,7 @@ export function delay(fun, time=0){
 			_time=setTimeout(()=>{
 				typeof event["end"]=="function"&&event["end"]()
 				runing=false
-			},time)
+			}, durating)
 		}
 	}
 	this.after=function(...args){
@@ -241,7 +286,7 @@ export function delay(fun, time=0){
 				typeof event["end"]=="function"&&event["end"]()
 				typeof fun=="function"&&await fun.bind(this)(...args)
 				runing=false
-			},time)
+			}, durating)
 		}
 	}
 	this.now=async function(...args){
@@ -254,22 +299,36 @@ export function delay(fun, time=0){
 			runing=false
 		// }
 	}
-
-	this.proceed=async function(...args){
+	let newValue=null;
+	let backup=null;
+	this.proceed=function(...args){
+		if(newValue===null){
+			newValue=args
+		}else{
+			backup=args
+		}
+		
 		only=true;
 		if(!runing){
 			runing=true;
 			only=false;
-			typeof fun=="function"&&await fun.bind(this)(...args)
 			clearTimeout(_time)
 			typeof event["wait"]=="function"&&event["wait"]()
-			_time=setTimeout(()=>{
+			_time=setTimeout(async ()=>{
+				typeof fun=="function"&&await fun.bind(this)(...newValue)
+
 				runing=false;
 				typeof event["end"]=="function"&&event["end"]()
+
+				newValue=backup;
+				backup=null;
+
 				if(only){
-					this.proceed(...args)
+					this.proceed(...newValue)
+				}else{
+					newValue=null;
 				}
-			},time)
+			}, durating)
 		}
 	}
 	this.addEventListener = function(name, listener){

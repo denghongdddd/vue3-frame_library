@@ -46,6 +46,7 @@ const config = {
     umdNamedDefine: true,
     globalObject: 'typeof self !== \'undefined\' ? self : this',
   },
+  lintOnSave: false,
   module: {
     rules: [
       {

@@ -29,7 +29,7 @@
     <tr> <td>立刻运行</td><td><button @click="add.now('----test------')">累计</button></td><td rowspan="5">{{num}}</td> </tr>
     <tr> <td>运行后延迟</td><td><button @click="add.before('----test------')">累计</button></td> </tr>
     <tr> <td>运行前延迟</td><td><button @click="add.after('----test------')">累计</button></td> </tr>
-    <tr> <td>运行前延迟,延迟中有调用过,结束后回再次运行一次</td><td><button @click="add.proceed('----test------')">累计</button></td> </tr>
+    <tr> <td>运行前延迟,延迟中有调用过,结束后回再次运行一次</td><td><button @click="add.proceed('----test------',parseInt(Math.random()*1000))">累计</button></td> </tr>
     <tr> <td>监听延迟</td><td>{{listenerStatu}}</td> </tr>
   </table>
 </template>
@@ -42,7 +42,7 @@
     setup(){
       var num=ref(0);
       let listenerStatu=ref("未开始");
-      let add=new delay(e=>num.value++,3000);
+      let add=new delay((e,n)=>num.value++, 3000);
 
       onMounted(()=>{
         add.addEventListener("wait",()=>listenerStatu.value="延迟中...")
@@ -68,15 +68,14 @@
 <script>
   const {provise} = require("black-knight/config/utils.js")
   import {defineComponent} from 'vue';
+
   export default defineComponent({
     setup(){
       let event=new provise()
-      event.on("demo",(...a)=>{
-        console.log("a=",a)
-      })
+      event.on("demo",(...a)=>console.log("----demo2---11---",a))
       return{
         emit(){
-          event.emit("demo",1,2,3)
+          event.emitSync("demo", parseInt(Math.random()*10))
         },
       }
     }
