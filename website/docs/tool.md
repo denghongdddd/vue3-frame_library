@@ -72,10 +72,18 @@
   export default defineComponent({
     setup(){
       let event=new provise()
-      event.on("demo",(...a)=>console.log("----demo2---11---",a))
+
+      event.on("demo",(...a)=>{
+        console.log("----demo------",a)
+        return true
+      })
+      event.onSync("demo",(a,b,c)=>{
+        console.log(a,b,c,'-------sync-----')
+      })
+
       return{
         emit(){
-          event.emitSync("demo", parseInt(Math.random()*10))
+          event.emit("demo", 1,2,3)
         },
       }
     }

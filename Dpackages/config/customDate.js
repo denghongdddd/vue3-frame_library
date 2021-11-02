@@ -1,5 +1,4 @@
 +function customDate(){
-  console.log('-------------date-------------')
   Date.prototype.format=function(fmt='yyyy-MM-dd hh:mm:ss.S', defaultValue='--/--'){
     if(this.toDateString()=='Invalid Date')return defaultValue
     var o = {

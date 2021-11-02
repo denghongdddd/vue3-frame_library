@@ -187,6 +187,9 @@ export function provise(){
 				subscriber[name]=callbackList
 			}
 		}
+		return ()=>{
+			this.off(name,callback)
+		}
 	}
 	this.onSync=(name, callback, time)=>{
 		if(name&&callback instanceof Function){
@@ -201,9 +204,11 @@ export function provise(){
 	this.emit=(name,...arr)=>{
 		if(name&&subscriber[name]){
 			var callbackList=[].concat(subscriber[name])
-			callbackList.forEach(v=>{
+			callbackList.forEach(async v=>{
 				if(subscriber[name].indexOf(v)>=0){
-					v(...arr)
+					if(await v(...arr)){
+						this.off(name,v)
+					}
 				}
 			})
 		}
