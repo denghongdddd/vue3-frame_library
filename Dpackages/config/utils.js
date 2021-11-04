@@ -1,6 +1,6 @@
 /**类型判断 */
-export const dataType=function(target,str){
-	return Object.prototype.toString.call(target).slice(8,-1).toLocaleLowerCase()===str
+export const dataType=function(target,...str){
+	return str.indexOf( Object.prototype.toString.call(target).slice(8,-1).toLocaleLowerCase() )>=0
 }
 
 /**
