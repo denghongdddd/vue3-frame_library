@@ -181,17 +181,33 @@ export function provise(){
 	let subscriber={}
 	this.on=(name,callback)=>{
 		if(name&&callback instanceof Function){
-			let callbackList = subscriber[name]||[]
-			if((subscriber[name]||[]).indexOf(callback)<0){
-				callbackList.push(callback)
-				subscriber[name]=callbackList
+			if(subscriber[name] instanceof Function){
+				console.error(`${name} 事件已经被定义为一次性回调！`)
+				return ()=>{ }
+			}else{
+				let callbackList = subscriber[name]||[]
+				if((subscriber[name]||[]).indexOf(callback)<0){
+					callbackList.push(callback)
+					subscriber[name]=callbackList
+				}
+				return ()=>{
+					this.off(name,callback)
+				}
 			}
-			return ()=>{
-				this.off(name,callback)
-			}
-		}else return ()=>{ console.error(`${callback} 回调函数不合规！`) }
+		}else {
+			console.error(`${callback} 回调函数不合规！`)
+			return ()=>{ }
+		}
 	}
-	
+	this.one=(name,callback)=>{
+		if(name&&callback instanceof Function){
+			if(subscriber[name] instanceof Array){
+				console.error(`${name} 事件已经被定义！`)
+			}else{
+				subscriber[name]=callback
+			}
+		}
+	}
 	this.onSync=(name, callback, time)=>{
 		if(name&&callback instanceof Function){
 			let callbackList = subscriber[name]||[]
@@ -200,19 +216,27 @@ export function provise(){
 				subscriber[name]=callbackList
 			}
 			return ()=>{ this.off(name, callback) }
-		}else return ()=>{ console.error(`${callback} 回调函数不合规！`) }
+		}else {
+			console.error(`${callback} 回调函数不合规！`)
+			return ()=>{ }
+		}
 	}
 	
 	this.emit=(name,...arr)=>{
 		if(name&&subscriber[name]){
-			var callbackList=[].concat(subscriber[name])
-			callbackList.forEach(async v=>{
-				if(subscriber[name].indexOf(v)>=0){
-					if(await v(...arr)){
-						this.off(name,v)
+			if(subscriber[name] instanceof Function){
+				subscriber[name]?.(...arr)
+				this.off(name)
+			}else if(subscriber[name] instanceof Array){
+				var callbackList=[].concat(subscriber[name])
+				callbackList.forEach(async v=>{
+					if(subscriber[name].indexOf(v)>=0){
+						if(await v(...arr)){
+							this.off(name,v)
+						}
 					}
-				}
-			})
+				})
+			}
 		}
 	}
 	
