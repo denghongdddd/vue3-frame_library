@@ -186,9 +186,18 @@ export function provise(){
 				callbackList.push(callback)
 				subscriber[name]=callbackList
 			}
-		}
-		return ()=>{
-			this.off(name,callback)
+			return ()=>{
+				this.off(name,callback)
+			}
+		}else return ()=>{ console.error(`${callback} 回调函数不合规！`) }
+	}
+	this.one=(name,callback)=>{
+		if(name&&callback instanceof Function){
+			if(subscriber[name] instanceof Array){
+				console.error(`${name} 事件已经被定义！`)
+			}else{
+				subscriber[name]=callback
+			}
 		}
 	}
 	this.onSync=(name, callback, time)=>{
@@ -198,19 +207,25 @@ export function provise(){
 				callbackList.push(proceed(callback, time))
 				subscriber[name]=callbackList
 			}
-		}
+			return ()=>{ this.off(name, callback) }
+		}else return ()=>{ console.error(`${callback} 回调函数不合规！`) }
 	}
 	
 	this.emit=(name,...arr)=>{
 		if(name&&subscriber[name]){
-			var callbackList=[].concat(subscriber[name])
-			callbackList.forEach(async v=>{
-				if(subscriber[name].indexOf(v)>=0){
-					if(await v(...arr)){
-						this.off(name,v)
+			if(subscriber[name] instanceof Function){
+				subscriber[name]?.(...arr)
+				this.off(name)
+			}else if(subscriber[name] instanceof Array){
+				var callbackList=[].concat(subscriber[name])
+				callbackList.forEach(async v=>{
+					if(subscriber[name].indexOf(v)>=0){
+						if(await v(...arr)){
+							this.off(name,v)
+						}
 					}
-				}
-			})
+				})
+			}
 		}
 	}
 	

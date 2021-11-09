@@ -29,7 +29,12 @@ externals.push(
     "axios":"axios",
     "gsap":"gsap",
   },
-  /^black-knight.*/,
+  function(content,req,callback){
+    if(/^black-knight/.test(req)){
+      callback(null, "black-kinght/lib/"+req.replace(/^black-knight\//,''))
+    }else callback()
+  },
+  /^black-knight\//,
   // /^lodash.*/
 )
 
