@@ -31,7 +31,7 @@ externals.push(
   },
   function(content,req,callback){
     if(/^black-knight/.test(req)){
-      callback(null, "black-kinght/lib/"+req.replace(/^black-knight\//,''))
+      callback(null, "black-knight/lib/"+req.replace(/^black-knight\//,''))
     }else callback()
   },
   /^black-knight\//,
