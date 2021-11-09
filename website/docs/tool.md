@@ -80,14 +80,10 @@
       event.onSync("demo",(a,b,c)=>{
         console.log(a,b,c,'-------sync-----')
       })
-      event.one("demo_one",(a,b,c)=>{
-        console.log(a,b,c,"-----------one--------------------------")
-      })
 
       return{
         emit(){
           event.emit("demo", 1,2,3)
-          event.emit("demo_one", 1,2,3)
         },
       }
     }

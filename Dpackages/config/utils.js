@@ -191,15 +191,7 @@ export function provise(){
 			}
 		}else return ()=>{ console.error(`${callback} 回调函数不合规！`) }
 	}
-	this.one=(name,callback)=>{
-		if(name&&callback instanceof Function){
-			if(subscriber[name] instanceof Array){
-				console.error(`${name} 事件已经被定义！`)
-			}else{
-				subscriber[name]=callback
-			}
-		}
-	}
+	
 	this.onSync=(name, callback, time)=>{
 		if(name&&callback instanceof Function){
 			let callbackList = subscriber[name]||[]
@@ -213,29 +205,23 @@ export function provise(){
 	
 	this.emit=(name,...arr)=>{
 		if(name&&subscriber[name]){
-			if(subscriber[name] instanceof Function){
-				subscriber[name]?.(...arr)
-				this.off(name)
-			}else if(subscriber[name] instanceof Array){
-				var callbackList=[].concat(subscriber[name])
-				callbackList.forEach(async v=>{
-					if(subscriber[name].indexOf(v)>=0){
-						if(await v(...arr)){
-							this.off(name,v)
-						}
+			var callbackList=[].concat(subscriber[name])
+			callbackList.forEach(async v=>{
+				if(subscriber[name].indexOf(v)>=0){
+					if(await v(...arr)){
+						this.off(name,v)
 					}
-				})
-			}
+				}
+			})
 		}
 	}
 	
 	this.off=(name,callback)=>{
 		if(name&&subscriber[name]){
 			if(typeof callback === "function"){
-				var index=subscriber[name].indexOf(callback)
-				if(index>=0)subscriber[name].splice(index,1)
-				if(subscriber[name].length==0)
-				delete subscriber[name]
+				var index=subscriber[name].indexOf(callback);
+				if(index>=0)subscriber[name].splice(index,1);
+				if(subscriber[name].length==0) delete subscriber[name];
 			}else{
 				delete subscriber[name]
 			}
