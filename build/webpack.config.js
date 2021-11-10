@@ -26,15 +26,17 @@ externals.push(
     // 'mitt': 'mitt',
     // 'normalize-wheel': 'normalize-wheel',
     // 'resize-observer-polyfill': 'resize-observer-polyfill',
-    "axios":"axios",
-    "gsap":"gsap",
+    // "axios":"axios",
+    // "gsap":"gsap",
   },
   function(content,req,callback){
     if(/^black-knight/.test(req)){
       callback(null, "black-knight/lib/"+req.replace(/^black-knight\//,''))
+    }if(/\.\/Dpackages/.test(req)){
+      callback(null, "black-knight/lib/"+req.replace(/^\.\/Dpackages\//,''))
     }else callback()
   },
-  /^black-knight\//,
+  // /^black-knight\//,
   // /^lodash.*/
 )
 
