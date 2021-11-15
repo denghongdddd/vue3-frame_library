@@ -34,7 +34,6 @@ externals.push(
       callback(null, "black-knight/lib/"+req.replace(/^black-knight\//,''))
     }else callback()
   },
-  // /^black-knight\//,
   // /^lodash.*/
 )
 

@@ -91,8 +91,8 @@
     }
     return this
   }
-  Date.prototype.startOfMonth = function(num=1){
-    var value=parseInt(num)
+  Date.prototype.startOfWeek = function(num=1){
+    var value=parseInt(num)%7||7
     if(typeof value=='number'&&!isNaN(value)){
       this.date(1).set('d',num==this.getDay()?0:-('12345671234567'.replace(new RegExp(`(\\d*)(${num}\\d*${this.getDay()||7})(\\d*)`),'$2').length-1) )
     }

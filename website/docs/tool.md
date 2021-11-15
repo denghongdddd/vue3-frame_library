@@ -11,7 +11,7 @@
 | minute | 返回分 | number:修改分,不传参数返回分 |
 | seconds | 返回秒 | number:修改秒,不传参数返回秒 |
 | set | 修改时间 | type: 类型`year|y`、`month|M`、`date|d`、`hour|h`、`minute|m`、`second|s`、`millisecond|S` <br/> num: 修改的值 |
-| starOfMonth | 设置时间为当月显示的第一个星期 | num: 开始星期 `默认:1` `范围：1~7` |
+| startOfWeek | 设置时间为当月显示的第一个星期 | num: 开始星期 `默认:1` `范围：1~7` |
 | endOf | 设置为时间的结尾 | type: 类型 `year|y`、`month|M`、`date|d` |
 | copy | 返回一新的日期对象 |  |
 #### 例如:
