@@ -5,11 +5,9 @@ export const dataType=function(target,...str){
 /** 随机生成颜色 */
 export class Colors{
 	#cArray=["0","1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
-	constructor(hslLength=1){
-		this.hslLength= hslLength;
-	}
-	rgbArray(){
-		var hslArray=this.getHslArray();
+	
+	rgbArray(hslLength=1){
+		var hslArray=this.getHslArray(hslLength);
 		if(!hslArray.length)return [];
 		var rgbArray = hslArray.map(v=>this.hslToRgb.apply(this, v))
 		return rgbArray.map(v=>({
@@ -53,9 +51,9 @@ export class Colors{
 	randomHsl(){
 		return [Math.random(),Math.random(),Math.random()]
 	}
-	getHslArray(){
+	getHslArray(hslLength){
 		var HSL=[];
-		for(var i=0;i<this.hslLength;i++){
+		for(var i=0;i<hslLength;i++){
 			var ret=this.randomHsl();
 			// 颜色相邻颜色差异须大于 0.25
 			if(i>0 && Math.abs(ret[0] - HSL[i-1][0])<0.25){
