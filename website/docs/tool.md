@@ -34,6 +34,7 @@
   </table>
 </template>
 <script>
+  console.log(require("black-knight/config/utils.js"),'-3erf435rg')
   const { delay } = require("black-knight/config/utils.js")
   import {defineComponent, ref, onMounted} from 'vue'
   

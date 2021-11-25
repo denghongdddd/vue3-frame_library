@@ -2,7 +2,7 @@
   "name": "black-knight",
   "private": false,
   "description": "自定义vue3框架",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "scripts": {
     "website-dev": "webpack-dev-server --config ./website/webpack.config.js",
     "build:lib": "cross-env LIBMODE=core webpack --config ./build/webpack.config.js",
