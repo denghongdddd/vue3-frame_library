@@ -87,6 +87,10 @@ const sanitizeHTML = (str) => {
   return temp.innerHTML
 }
 export default {
+  name:"demo-block",
+  install(Vue){
+    Vue.component(this.name,this)
+  },
   data() {
     return {
       codepen: {

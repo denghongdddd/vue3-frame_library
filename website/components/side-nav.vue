@@ -106,6 +106,10 @@ import bus from '../bus'
 import compoLang from '../i18n/component.json'
 
 export default defineComponent({
+  name:"SideNav",
+  install(Vue){
+    Vue.component(this.name,this)
+  },
   props: {
     data: {
       type: Array,

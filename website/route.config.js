@@ -1,5 +1,6 @@
 import { defineAsyncComponent } from 'vue'
 import navConfig from './nav.config'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const LoadingComponent = {
   template: `<div v-loading="true" style="min-height: 500px; width: 100%;"></div>`,
@@ -58,9 +59,8 @@ const registerRoute = () => {
   }
   return [route]
 }
-let route = registerRoute()
 
-route = route.concat([
+let routes = registerRoute().concat([
   {
     path: `/`, // 首页
     meta: { lang:'zh-CN' },
@@ -73,5 +73,44 @@ route = route.concat([
     redirect: { path: `/zh-CN/component/installation` },
   },
 ])
+const router=createRouter({
+  history: createWebHashHistory(),
+  routes,
+})
 
-export default route
+router.isReady().then(() => {
+  // let lang = location.hash.split('/')[1]
+  // let langConfig = compLang.filter( config => config.lang === lang)[0][
+  //   'demo-block'
+  // ]
+
+  //   app.config.globalProperties.$copySvgIcon = (iconName) => {
+  //     clipboardCopy(
+  //       `<el-icon>
+  //   <${hyphenate(iconName)} />
+  // </el-icon>
+  //       `
+  //     )
+  //       .then(() => {
+  //         app.config.globalProperties.$message({
+  //           showClose: true,
+  //           message: langConfig['copy-success'],
+  //           type: 'success',
+  //         })
+  //       })
+  //       .catch(() => {
+  //         app.config.globalProperties.$message({
+  //           showClose: true,
+  //           message: langConfig['copy-error'],
+  //           type: 'error',
+  //         })
+  //       })
+  //   }
+  router.afterEach(async route => {
+    await nextTick()
+    document.title = '自定义组件框架'
+    ga('send', 'event', 'PageView', route.name)
+  })
+})
+
+export default router

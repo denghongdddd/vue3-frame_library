@@ -17,6 +17,10 @@
       {
         "path":"/map",
         "name":"腾讯地图"
+      },
+      {
+        "path":"/echarts",
+        "name":"图表"
       }
     ]
   },

@@ -21,8 +21,8 @@ module.exports = {
   ],
   rules: {
   //   // js/ts
-  //   'eol-last': 'error',
-  //   'no-trailing-spaces': 'error',
+    'eol-last': 'off',
+    'no-trailing-spaces': 'off',
   //   'comma-style': ['error', 'last'],
   //   'comma-dangle': ['error', 'always-multiline'],
   //   quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],//引号
@@ -47,20 +47,17 @@ module.exports = {
   //     },
   //   ],
   //   // vue
-  //   'vue/no-v-html': 'off',
-  //   'vue/singleline-html-element-content-newline': 'off',
-  //   'vue/html-self-closing': ['error', {
-  //     html: {
-  //       void: 'never',
-  //       normal: 'never',
-  //       component: 'always',
-  //     },
-  //   }],
+    'vue/no-v-html': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
   //   'vue/max-attributes-per-line': ['error', {
   //     singleline: 3,
   //     multiline: 1,
   //   }],
-  //   'vue/require-default-prop': 'off',
+    'vue/require-default-prop': 'off',
   //   'vue/html-closing-bracket-spacing': 'error',
+    "vue/component-tags-order":"off",
+    "vue/html-self-closing":"off",
+    "vue/html-indent":"off",
+    "vue/component-definition-name-casing":"off",
   },
 }

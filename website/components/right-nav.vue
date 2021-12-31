@@ -33,6 +33,10 @@ import { defineComponent, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import ResizeObserver from 'resize-observer-polyfill'
 
 export default defineComponent({
+  name:"RightNav",
+  install(Vue){
+    Vue.component(this.name,this)
+  },
   setup() {
     // ordered
     const map = new Map()
